@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './SignUp.scss'
 
 export default function SignUp(props) {
     
