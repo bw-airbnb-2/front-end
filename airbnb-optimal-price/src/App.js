@@ -1,3 +1,4 @@
+//packages
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -6,11 +7,17 @@ import {
   Link
 } from "react-router-dom";
 
-import logo from './logo.svg';
+//components
+import Login from './Components/Login';
+import SignUp from './Components/SignUp';
+import Dashboard from './Components/Dashboard';
+
+//style
 import './App.css';
 
 function App() {
   return (
+    <Router>
     <div>
       <header>
         <nav>
@@ -19,7 +26,19 @@ function App() {
           <Link to='/dashboard'>Dashboard</Link>
         </nav>
       </header>
+      <Switch>
+        <Route path='/log-in'>
+          <Login />
+        </Route>
+        <Route path='/sign-up'>
+          <SignUp />
+        </Route>
+        <Route path='/dashboard'>
+          <Dashboard />
+        </Route>
+      </Switch>
     </div>
+    </Router>
   );
 }
 
