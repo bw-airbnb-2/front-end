@@ -8,12 +8,9 @@ import {
 } from "react-router-dom";
 
 //components
-import Login from './Components/Login';
-import SignUp from './Components/SignUp';
-import Dashboard from './Components/Dashboard';
-
-//style
-import './App.css';
+import Login from './Components/Login/Login';
+import SignUp from './Components/SignUp/SignUp';
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
