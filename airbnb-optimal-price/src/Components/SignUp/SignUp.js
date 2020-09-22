@@ -6,7 +6,6 @@ import axios from 'axios'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
 
-
 // Material UI
 import { Button } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
@@ -23,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-
 
 function SignUp(props) {
 

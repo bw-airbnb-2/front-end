@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -14,11 +16,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   }));
-export default function Login(props) {
+export default function Login() {
     const classes = useStyles();
+    let history = useHistory();
     //Setting State
     const [formState, setFormState] = useState({
         email: "",
+        username: "",
         password: "",
       });
 
@@ -33,18 +37,35 @@ export default function Login(props) {
     
     const submitForm = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
+
+        const post = {
+          "username": formState.username,
+          "password": formState.password
+        }
+        console.log(post)
+        
+        axiosWithAuth()
+        .post('https://airbnb-bw-backend.herokuapp.com/api/auth/login', post)
+        .then( (res) => {
+          console.log(res.data)
+          localStorage.setItem('token', res.data.token)
+          console.log(history)
+          history.push('/dashboard')
+        })
+        .catch( (err) => {
+          console.error(err)
+        })
     }
 
     //SCHEMA
     const formSchema = Yup.object().shape({
-        email: Yup
-          .string()
-          .email("Must be a valid email address.")
-          .required("Must include email address."),
+        // email: Yup
+        //   .string()
+        //   .email("Must be a valid email address.")
+        //   .required("Must include email address."),
         password: Yup
           .string()
-          .min(8, "Passwords must be at least 8 characters long.")
+          .min(5, "Passwords must be at least 8 characters long.")
           .required("Password is Required"),
       });
       useEffect(() => {
@@ -58,9 +79,10 @@ export default function Login(props) {
             <h1>Login</h1>
             <form className={classes.root}>
             <AccountBoxIcon />
-                <TextField id="email" variant="outlined"type='text' placeholder='Email'onChange={changeHandler} value={formState.email}/>
-                <TextField id="password" variant="outlined"type='password' placeholder='Password'onChange={changeHandler} value={formState.password}/>
-                <Button variant='contained'color='primary'disabled={buttonDisabled}value='submit'onClick={submitForm}>Login!</Button>
+                {/* <TextField id="email" variant="outlined" type='text' placeholder='Email' onChange={changeHandler} value={formState.email}/> */}
+                <TextField id="username" variant="outlined" type='text' placeholder='Username' onChange={changeHandler} value={formState.username}/>
+                <TextField id="password" variant="outlined" type='password' placeholder='Password'onChange={changeHandler} value={formState.password}/>
+                <Button variant='contained'color='primary'disabled={buttonDisabled} value='submit'onClick={submitForm}>Login!</Button>
             </form>
         </div>
     )

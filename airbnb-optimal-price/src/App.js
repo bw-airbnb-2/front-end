@@ -4,8 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useHistory,
+  Link
 } from "react-router-dom";
 
 //material UI
@@ -16,33 +15,14 @@ import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import { PrivateRoute } from './Components/PrivateRoute';
-
+import NavBar from './Components/NavBar';
 
 function App() {
 
   return (
     <Router>
       <div >
-        <AppBar position="static">
-          <Toolbar>
-            <Typography variant="h6">
-              UpPrice
-            </Typography>
-            <Button color="inherit">
-              <Link to="/log-in">Log in</Link>
-            </Button>
-            <Button color="inherit">
-              <Link to="/sign-up">Sign Up</Link>
-            </Button>
-            <Button color="inherit">
-              <Link to="/dashboard">Dashboard</Link>
-            </Button>
-          </Toolbar>
-        </AppBar>
-        {/* <header>
-          <nav>
-          </nav>
-        </header> */}
+        <NavBar />
         <Switch>
           <Route path="/log-in">
             <Login />
