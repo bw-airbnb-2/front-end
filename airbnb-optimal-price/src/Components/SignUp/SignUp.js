@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 
 
-
 // Material UI
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -195,7 +194,7 @@ function SignUp(props) {
 
                 {/* Term of service (checkbox) input */}
                 <label className='labelCheckbox' htmlFor='termStatus'>
-                    Term of service
+                    I agree to the terms of service
                     <Checkbox
                         id='termStatus'
                         type='checkbox'

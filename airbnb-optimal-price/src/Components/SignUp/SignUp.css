@@ -2,7 +2,7 @@
 
 body {
    padding: 0 0 100% 0;
-   background-color: orange;
+   background-color: #EA7D23;
 }
 
 .signUp {
@@ -11,13 +11,17 @@ body {
    align-items: center;
 }
 
+.signUp > h1 {
+   margin: 1rem 0 2rem 0;
+}
+
 .signUp form {
    display: flex;
    flex-flow: column wrap;
    align-items: center;
    background-color: white;
-   border-radius: 50px;
-   padding: 3%;
+   border-radius: 30px;
+   padding: 3% 5%;
 }
 
 .signUp form input {
@@ -42,12 +46,13 @@ body {
    font-size: 0.8rem;
    font-family: 'Roboto', sans-serif;
    padding-left: 3%;
-   
    color: red;
 }
 
 .signUp .labelCheckbox {
    font-family: 'Roboto', sans-serif;
-   width: 80%;
+   font-size: 0.9rem;
+   width: 100%;
    text-align: center;
+   margin: 1rem 0 0.8rem 0;
 }
