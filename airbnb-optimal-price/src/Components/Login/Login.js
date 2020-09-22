@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-=======
 import './Login.scss'
 import * as Yup from "yup";
 import { Button } from '@material-ui/core';
@@ -8,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
->>>>>>> a4a9fb21f864c148f997f9489ad3c15309eb30cb
 
 const useStyles = makeStyles((theme) => ({
     root: {
