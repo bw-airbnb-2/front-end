@@ -19,7 +19,6 @@ import { PrivateRoute } from './Components/PrivateRoute';
 
 
 function App() {
-  let history = useHistory();
 
   return (
     <Router>
