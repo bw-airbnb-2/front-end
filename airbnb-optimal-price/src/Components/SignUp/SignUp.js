@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
-=======
->>>>>>> a4a9fb21f864c148f997f9489ad3c15309eb30cb
 
 // Material UI
 import { Button } from '@material-ui/core'
