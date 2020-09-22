@@ -1,5 +1,5 @@
 //packages
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,13 +8,15 @@ import {
   useHistory,
 } from "react-router-dom";
 
+//material UI
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+
 //components
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import { PrivateRoute } from './Components/PrivateRoute';
 
-//material UI
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 function App() {
   let history = useHistory();
@@ -49,9 +51,7 @@ function App() {
           <Route path="/sign-up">
             <SignUp />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
         </Switch>
       </div>
     </Router>
