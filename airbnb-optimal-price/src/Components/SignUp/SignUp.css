@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+   padding: 0 0 100% 0;
+   background-color: #EA7D23;
+}
+
+.signUp {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.signUp > h1 {
+   margin: 1rem 0 2rem 0;
+}
+
+.signUp form {
+   display: flex;
+   flex-flow: column wrap;
+   align-items: center;
+   background-color: white;
+   border-radius: 30px;
+   padding: 3% 5%;
+}
+
+.signUp form input {
+   outline-width: 0;
+   margin-left: 4%;
+   margin-top: 4%;
+}
+
+.signUp form button {
+   text-transform: inherit;
+   background-color: orange;
+   color: white;
+   font-weight: 600;
+   margin-top: 4%;
+}
+
+/* .signUp form button:hover {
+   
+} */
+
+.signUp p {
+   font-size: 0.8rem;
+   font-family: 'Roboto', sans-serif;
+   padding-left: 3%;
+   color: red;
+}
+
+.signUp .labelCheckbox {
+   font-family: 'Roboto', sans-serif;
+   font-size: 0.9rem;
+   width: 100%;
+   text-align: center;
+   margin: 1rem 0 0.8rem 0;
+}
