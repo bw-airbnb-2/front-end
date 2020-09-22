@@ -4,6 +4,8 @@ import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
+
 
 // Material UI
 import { Button } from '@material-ui/core'
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 function SignUp(props) {
 
     const classes = useStyles();
+    const history = useHistory();
 
     // Info state
     const [info, setInfo] = useState({
@@ -107,9 +110,9 @@ function SignUp(props) {
         axiosWithAuth()
             .post('https://airbnb-bw-backend.herokuapp.com/api/auth/register', registerObj)
             .then( response => {
-                
                 //Function from App.js
                 console.log(response.data)
+                history.push('/log-in')
             })
             .catch( err => {
                 console.log(err)
