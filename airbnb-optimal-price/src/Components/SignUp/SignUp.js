@@ -3,12 +3,9 @@ import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
-<<<<<<< HEAD
-=======
 import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
->>>>>>> 789561f1bb491c17508796559deacf112959b070
 
 // Material UI
 import { Button } from '@material-ui/core'
