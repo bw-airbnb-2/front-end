@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
 import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
-=======
->>>>>>> a4a9fb21f864c148f997f9489ad3c15309eb30cb
+import { Link } from 'react-router-dom'
 
 // Material UI
 import { Button } from '@material-ui/core'
@@ -26,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function SignUp(props) {
+function SignUp({addUserList}) {
 
     const classes = useStyles();
 
@@ -101,8 +99,8 @@ function SignUp(props) {
             .post('https://reqres.in/api/users', info)
             .then( response => {
                 
-                //Function from App.js
-                console.log(response.data)
+                addUserList(response.data)
+                
             })
             .catch( err => {
                 console.log(err)
@@ -215,7 +213,7 @@ function SignUp(props) {
                 <Button variant="contained" disabled={disabled} type='submit'>Get Started</Button>
 
             </form>
-
+            <Link to='/user-list'><h4>User list</h4></Link>
         </div>
     )
 }

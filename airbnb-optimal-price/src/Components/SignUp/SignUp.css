@@ -56,3 +56,9 @@ body {
    text-align: center;
    margin: 1rem 0 0.8rem 0;
 }
+
+.signUp > a {
+   margin-top: 1.5%;
+   text-decoration: underline;
+   color: black;
+}

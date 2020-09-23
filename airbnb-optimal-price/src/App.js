@@ -1,5 +1,5 @@
 //packages
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,12 +12,28 @@ import {
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
 import Dashboard from "./Components/Dashboard/Dashboard";
+import User from './Components/SignUp/User'
 
 //material UI
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 function App() {
   let history = useHistory();
+  const [userList, setUserList] = useState([
+    {
+      name: 'James',
+      email: 'sunkist@gmail.com',
+      phone: '9097894567',
+      password: '123456789',
+    }
+  ])
+
+  // this function ONLY for SignUp
+  const addUserList = (userInfo) => {
+
+      setUserList([...userList, userInfo])
+
+  }
 
   return (
     <Router>
@@ -47,11 +63,20 @@ function App() {
             <Login />
           </Route>
           <Route path="/sign-up">
-            <SignUp />
+            <SignUp addUserList={addUserList}/>
           </Route>
           <Route path="/dashboard">
             <Dashboard />
           </Route>
+          <Route path='/user-list'>
+            {
+              userList.map( (eachUser) => {
+
+                return <User key={eachUser.id} user={eachUser} />
+
+              })
+            }
+        </Route>
         </Switch>
       </div>
     </Router>
