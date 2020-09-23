@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Yup from "yup";
+import './Login.css'
 import { Button } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -54,14 +55,16 @@ export default function Login(props) {
       }, [formState]); 
 
     return(
+      <div className='mainerDiv'>
         <div className='mainDiv'>
             <h1>Login</h1>
+              <AccountBoxIcon />
             <form className={classes.root}>
-            <AccountBoxIcon />
                 <TextField id="email" variant="outlined"type='text' placeholder='Email'onChange={changeHandler} value={formState.email}/>
                 <TextField id="password" variant="outlined"type='password' placeholder='Password'onChange={changeHandler} value={formState.password}/>
                 <Button variant='contained'color='primary'disabled={buttonDisabled}value='submit'onClick={submitForm}>Login!</Button>
             </form>
         </div>
+      </div>
     )
 }
