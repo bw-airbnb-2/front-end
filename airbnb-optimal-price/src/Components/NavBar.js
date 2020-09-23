@@ -10,7 +10,6 @@ import {
 
 export default function NavBar() {
   let history = useHistory();
-  console.log(history);
 
   const logOut = () => {
     localStorage.setItem("token", "");

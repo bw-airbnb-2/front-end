@@ -12,6 +12,13 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 
+//redux
+import { connect } from 'react-redux';
+
+//actions
+import { registerUser } from '../../actions/actions';
+
+
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -104,16 +111,8 @@ function SignUp(props) {
             country: "USA"
           }
         // Send data of the object we like to send and get the data back from the server
-        axiosWithAuth()
-            .post('https://airbnb-bw-backend.herokuapp.com/api/auth/register', registerObj)
-            .then( response => {
-                //Function from App.js
-                console.log(response.data)
-                history.push('/log-in')
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        props.registerUser(registerObj);
+        history.push("/log-in");
         
         // Resets 'info' state when submited
 
@@ -227,4 +226,10 @@ function SignUp(props) {
     )
 }
 
-export default SignUp
+function mapStateToProps(state) {
+    return {
+        isRegistering: state.isRegistering
+    }
+}
+
+export default connect( mapStateToProps, { registerUser })(SignUp);

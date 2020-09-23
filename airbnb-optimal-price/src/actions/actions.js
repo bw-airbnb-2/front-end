@@ -1,4 +1,6 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import axios from 'axios';
+
 
 const BASE_URL = "https://airbnb-bw-backend.herokuapp.com/api";
 
@@ -26,19 +28,21 @@ export const DELETE_LISTING_START = "DELETE_LISTING_START";
 export const DELETE_LISTING_SUCCESS = "DELETE_LISTING_SUCCESS";
 export const DELETE_LISTING_FAILURE = "DELETE_LISTING_FAILURE";
 
-export const registerUser = () => (dispatch) => {
+export const registerUser = (registerObj) => (dispatch) => {
   dispatch({ type: REGISTER_START });
-  axiosWithAuth()
+//   axiosWithAuth()
+    axios
     .post(
-      "https://airbnb-bw-backend.herokuapp.com/api/auth/register",
+      `${BASE_URL}/auth/register`,
       registerObj
     )
     .then((response) => {
       //Function from App.js
       console.log(response.data);
-      history.push("/log-in");
+      dispatch({ type: REGISTER_SUCCESS })
     })
     .catch((err) => {
       console.log(err);
+      dispatch({ type: REGISTER_FAILURE })
     });
 };
