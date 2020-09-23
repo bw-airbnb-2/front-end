@@ -82,7 +82,6 @@ export default function Login() {
             <h1>Login</h1>
               <AccountBoxIcon />
             <form className={classes.root}>
-            <AccountBoxIcon />
                 {/* <TextField id="email" variant="outlined" type='text' placeholder='Email' onChange={changeHandler} value={formState.email}/> */}
                 <TextField id="username" variant="outlined" type='text' placeholder='Username' onChange={changeHandler} value={formState.username}/>
                 <TextField id="password" variant="outlined" type='password' placeholder='Password'onChange={changeHandler} value={formState.password}/>
