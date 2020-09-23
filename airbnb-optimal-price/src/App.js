@@ -18,6 +18,11 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import { PrivateRoute } from './Components/PrivateRoute';
 import NavBar from './Components/NavBar';
 
+//redux
+import { connect } from 'react-redux';
+
+//actions
+
 function App() {
 
   return (
