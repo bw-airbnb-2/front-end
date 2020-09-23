@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 //material UI
@@ -31,6 +32,9 @@ function App() {
             <SignUp />
           </Route>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <Route path="/">
+            <Redirect to="/dashboard" />
+          </Route>
         </Switch>
       </div>
     </Router>
