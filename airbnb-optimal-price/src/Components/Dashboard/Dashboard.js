@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 //components
 import AddListing from './AddListing';
+import  Listings from './Listings';
+
 
 
 //material UI
@@ -14,6 +16,9 @@ export default function Dashboard(props) {
       <Grid item container xs={12} sm={8} justify='center'>
         <Typography variant='h1'>Dashboard</Typography>
         <AddListing />
+      </Grid>
+      <Grid item container xs={12} sm={8} justify='center'>
+        <Listings />
       </Grid>
       <Grid item xs={false} sm={2} />
     </Grid>

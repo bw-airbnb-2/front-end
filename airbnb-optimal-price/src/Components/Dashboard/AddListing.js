@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Button, Grid, TextField, Input } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+
 
 const useStyles = makeStyles({
   formBox: {
@@ -18,6 +20,11 @@ const useStyles = makeStyles({
 
 export default function AddListing() {
   const classes = useStyles();
+
+  const saveListing = () => {
+    // axiosWithAuth()
+    // .post()
+  }
 
   return (
     <Grid
@@ -63,7 +70,7 @@ export default function AddListing() {
             required
           />
           <Button>Optimal Price</Button>
-          <Button>Save</Button>
+          <Button onClick={ () => saveListing()}>Save</Button>
         </Grid>
       </form>
     </Grid>
