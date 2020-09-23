@@ -14,8 +14,12 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+<<<<<<< HEAD
     "yup": "^0.29.3",
     "react-scripts": "3.4.3"
+=======
+    "yup": "^0.29.3"
+>>>>>>> c8bf888fe8a0594b8ce014a3441e872acef33a08
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> c8bf888fe8a0594b8ce014a3441e872acef33a08
 
 //components
 import AddListing from './AddListing';
