@@ -3,6 +3,9 @@ import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
 // Material UI
 import { Button } from '@material-ui/core'
@@ -22,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-function SignUp(props) {
+function SignUp({addUserList}) {
 
     const classes = useStyles();
+    const history = useHistory();
 
     // Info state
     const [info, setInfo] = useState({
@@ -92,14 +95,32 @@ function SignUp(props) {
 
         e.preventDefault()
 
-        
+        const registerObj = {
+            username: info.name,
+            password: info.password,
+            first_name: "firstPlaceholder",
+            last_name: "lastPlaceholder",
+            address: "1234 Main St, Somewhere, OH, 12345",
+            age: 26,
+            birthday: "10 - 14 - 1994",
+            country: "USA"
+          }
         // Send data of the object we like to send and get the data back from the server
-        axios
+        axiosWithAuth()
+            .post('https://airbnb-bw-backend.herokuapp.com/api/auth/register', registerObj)
+            .then( response => {
+                
+                history.push('/log-in')
+            })
+            .catch( err => {
+                console.log(err)
+            })
+
+         axios
             .post('https://reqres.in/api/users', info)
             .then( response => {
                 
-                //Function from App.js
-                console.log(response.data)
+                addUserList(response.data)
             })
             .catch( err => {
                 console.log(err)
@@ -132,9 +153,9 @@ function SignUp(props) {
     
     return(
         <div className='signUp'>
-            <h1>Sign Up</h1>
 
             <form className={classes.root} onSubmit={ formSubmit }>
+                <h1>Sign Up</h1>
 
                 {/* Name input */}
                 <label htmlFor='name'>
@@ -212,7 +233,7 @@ function SignUp(props) {
                 <Button variant="contained" disabled={disabled} type='submit'>Get Started</Button>
 
             </form>
-
+            <Link to='/user-list'><h4>User list</h4></Link>
         </div>
     )
 }

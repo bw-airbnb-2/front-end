@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.userList {
+   display: flex;
+   flex-flow: column wrap;
+   width: 15%;
+   margin: 2%;
+   padding: 2% 0;
+   align-items: center;
+   background-color: white;
+   border-radius: 0.9rem;
+}
+
+.userList p {
+   margin: 4% 0;
+   font-family: roboto;
+}
