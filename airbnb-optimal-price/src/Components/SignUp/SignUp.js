@@ -153,9 +153,9 @@ function SignUp({addUserList}) {
     
     return(
         <div className='signUp'>
-            <h1>Sign Up</h1>
 
             <form className={classes.root} onSubmit={ formSubmit }>
+                <h1>Sign Up</h1>
 
                 {/* Name input */}
                 <label htmlFor='name'>
