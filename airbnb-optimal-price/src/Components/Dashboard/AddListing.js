@@ -18,19 +18,19 @@ const useStyles = makeStyles({
 });
 
 const initialListing = {
-  id: new Date(),
-  userId: 1,
-  name: "Chris",
-  room_type: "large",
-  minimum_nights: 3,
-  maximum_nights: 6,
-  location: "Japan",
-  price: 255.99,
-  accomodates: 3,
-  bathrooms: 2,
-  bedrooms: 2,
-  beds: 3,
-  guests_included: 2,
+  id: 0,
+  userId: 0,
+  name: '',
+  room_type: "",
+  minimum_nights: 0,
+  maximum_nights: 0,
+  location: "",
+  price: 0,
+  accomodates: 0,
+  bathrooms: 0,
+  bedrooms: 0,
+  beds: 0,
+  guests_included: 0,
 };
 
 export default function AddListing() {

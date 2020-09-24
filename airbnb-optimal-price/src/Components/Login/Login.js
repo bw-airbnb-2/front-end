@@ -74,7 +74,7 @@ function Login(props) {
   return (
     <div className="mainDiv">
       <h1>Login</h1>
-      <form className={classes.root}>
+      <form className={classes.root} onSubmit={submitForm}>
         <AccountBoxIcon />
         {/* <TextField id="email" variant="outlined" type='text' placeholder='Email' onChange={changeHandler} value={formState.email}/> */}
         <TextField
@@ -98,7 +98,7 @@ function Login(props) {
           color="primary"
           disabled={buttonDisabled}
           value="submit"
-          onClick={submitForm}
+          type="submit"
         >
           Login!
         </Button>
