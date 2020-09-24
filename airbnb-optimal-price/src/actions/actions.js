@@ -60,8 +60,8 @@ export const loginUser = (loginInfo, history) => (dispatch) => {
             (user) => user.username === loginInfo.username
           );
           console.log(thisUser[0]);
-          localStorage.setItem("clientId", thisUser[0].id)
-          localStorage.setItem("clientName", thisUser[0].username)
+          localStorage.setItem("clientId", thisUser[0].id);
+          localStorage.setItem("clientName", thisUser[0].username);
           dispatch({ type: LOGIN_SUCCESS, payload: thisUser[0] });
         })
         .catch((err) => {
@@ -79,9 +79,9 @@ export const postListing = (post) => (dispatch) => {
   let modifiedPost = {
     ...post,
     userId: localStorage.getItem("clientId"),
-    name: localStorage.getItem("clientName")
-  }
-  console.log(modifiedPost)
+    name: localStorage.getItem("clientName"),
+  };
+  console.log(modifiedPost);
   axiosWithAuth()
     .post(`${BASE_URL}/listings`, modifiedPost)
     .then((res) => {
@@ -96,13 +96,47 @@ export const postListing = (post) => (dispatch) => {
 export const deleteListing = (id) => (dispatch) => {
   dispatch({ type: DELETE_LISTING_START });
   axiosWithAuth()
-  .delete(`${BASE_URL}/listings/${id}`)
-  .then( res => {
-    console.log(res);
-    dispatch({ type: DELETE_LISTING_SUCCESS })
-  })
-  .catch( err => {
-    console.error(err)
-    dispatch({ type: DELETE_LISTING_FAILURE })
-  })
-}
+    .delete(`${BASE_URL}/listings/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: DELETE_LISTING_SUCCESS });
+    })
+    .catch((err) => {
+      console.error(err);
+      dispatch({ type: DELETE_LISTING_FAILURE });
+    });
+};
+
+export const editListing = (id, post) => (dispatch) => {
+  dispatch({ type: PUT_LISTING_START });
+  axiosWithAuth()
+    .put(`${BASE_URL}/listings/${id}`, post)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: PUT_LISTING_SUCCESS });
+    })
+    .catch((err) => {
+      console.error(err);
+      dispatch({ type: PUT_LISTING_FAILURE });
+    });
+};
+
+export const getListings = () => (dispatch) => {
+  dispatch({ type: GET_LISTINGS_START });
+  axiosWithAuth()
+    .get(`${BASE_URL}/listings`)
+    .then((res) => {
+      console.log(res.data);
+      const rawListings = res.data;
+        console.log(rawListings)
+        const userListings = rawListings.filter((list) => {
+          return list.userId == localStorage.getItem("clientId");
+        });
+        console.log(userListings)
+      dispatch({ type: GET_LISTINGS_SUCCESS, payload: userListings });
+    })
+    .catch((err) => {
+      console.error(err);
+      dispatch({ type: GET_LISTINGS_FAILURE });
+    });
+};

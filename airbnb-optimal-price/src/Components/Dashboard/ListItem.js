@@ -5,7 +5,7 @@ import "./ListItem.css";
 import { connect } from "react-redux";
 
 //actions
-import { deleteListing } from "../../actions/actions";
+import { deleteListing, editListing } from "../../actions/actions";
 
 //material-ui
 import { Typography, Button, Grid, TextField } from "@material-ui/core";
@@ -28,6 +28,24 @@ const useStyles = makeStyles({
 function ListItem(props) {
   const classes = useStyles();
   const [edit, setEdit] = useState(false);
+  const initialForm = {
+    room_type: props.item.room_type,
+    minimum_nights: props.item.minimum_nights,
+    location: props.item.location
+  }
+  const [form, setForm ] = useState(initialForm);
+
+  const saveListing = (e) => {
+    e.preventDefault();
+    props.editListing( props.item.id, form );
+  };
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <Grid item container direction="column" justify="center">
@@ -37,7 +55,9 @@ function ListItem(props) {
           <Typography variant="h6">{`Minimum Nights: ${props.item.minimum_nights}`}</Typography>
           <Typography variant="h6">{`Location: ${props.item.location}`}</Typography>
           <Button onClick={() => setEdit(true)}>Edit</Button>
-          <Button onClick={() => props.deleteListing(props.item.id)}>Delete</Button>
+          <Button onClick={() => props.deleteListing(props.item.id)}>
+            Delete
+          </Button>
         </Grid>
       ) : (
         <form>
@@ -49,8 +69,8 @@ function ListItem(props) {
               label="Room Type"
               variant="outlined"
               required
-              // value={listing.room_type}
-              // onChange={handleChange}
+              value={form.room_type}
+              onChange={handleChange}
             />
             <TextField
               className={classes.textField}
@@ -59,8 +79,8 @@ function ListItem(props) {
               label="Minimum Nights"
               variant="outlined"
               required
-              // value={listing.minimum_nights}
-              // onChange={handleChange}
+              value={form.minimum_nights}
+              onChange={handleChange}
             />
             <TextField
               className={classes.textField}
@@ -69,10 +89,10 @@ function ListItem(props) {
               label="Location"
               variant="outlined"
               required
-              // value={listing.location}
-              // onChange={handleChange}
+              value={form.location}
+              onChange={handleChange}
             />
-            <Button onClick={ () => setEdit(false) }>Cancel</Button>
+            <Button onClick={() => setEdit(false)}>Cancel</Button>
             <Button>Optimal Price</Button>
             <Button type="submit">Save</Button>
           </Grid>
@@ -89,4 +109,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { deleteListing })(ListItem);
+export default connect(mapStateToProps, { deleteListing, editListing })(
+  ListItem
+);

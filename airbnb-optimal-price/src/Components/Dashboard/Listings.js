@@ -7,30 +7,37 @@ import ListItem from "./ListItem";
 //redux
 import { connect } from "react-redux";
 
-function Listings(props) {
-  const [listings, setListings] = useState([]);
+//actions
+import { getListings } from '../../actions/actions';
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get("https://airbnb-bw-backend.herokuapp.com/api/listings")
-      .then((res) => {
-        console.log(res)
-        const rawListings = res.data;
-        console.log(rawListings)
-        const userListings = rawListings.filter((list) => {
-          return list.userId == localStorage.getItem("clientId");
-        });
-        console.log(userListings)
-        setListings(userListings);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+
+function Listings(props) {
+  // const [listings, setListings] = useState([]);
+
+  useEffect( () => {
+    props.getListings()
+  }, [])
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get("https://airbnb-bw-backend.herokuapp.com/api/listings")
+  //     .then((res) => {
+  //       console.log(res)
+  //       const rawListings = res.data;
+  //       console.log(rawListings)
+  //       const userListings = rawListings.filter((list) => {
+  //         return list.userId == localStorage.getItem("clientId");
+  //       });
+  //       console.log(userListings)
+  //       setListings(userListings);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // }, []);
 
   return (
     <div>
-      {listings.map((list) => {
+      {props.listings.map((list) => {
         return <ListItem key={list.id} item={list} />;
       })}
     </div>
@@ -39,8 +46,9 @@ function Listings(props) {
 
 function mapStateToProps(state) {
   return {
-    user: state.user,
+    listings: state.listings,
+
   };
 }
 
-export default connect(mapStateToProps, {})(Listings);
+export default connect(mapStateToProps, { getListings })(Listings);
