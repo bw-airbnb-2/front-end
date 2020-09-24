@@ -14,12 +14,9 @@ function Listings(props) {
     axiosWithAuth()
       .get("https://airbnb-bw-backend.herokuapp.com/api/listings")
       .then((res) => {
-        console.log(res);
-        console.log(res.data);
-        const listings = res.data;
-        console.log(props.user);
-        const userListings = listings.filter((list) => {
-          return list.id === props.user.id;
+        const rawListings = res.data;
+        const userListings = rawListings.filter((list) => {
+          return list.id === localStorage.getItem("clientId");
         });
         setListings(userListings);
       })

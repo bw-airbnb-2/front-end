@@ -13,7 +13,8 @@ export default function NavBar() {
 
   const logOut = () => {
     localStorage.setItem("token", "");
-    console.log(history);
+    localStorage.setItem("clientId", "");
+    localStorage.setItem("clientName", "");
     history.push('/log-in');
   };
 

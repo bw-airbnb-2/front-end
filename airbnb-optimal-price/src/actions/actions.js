@@ -59,7 +59,9 @@ export const loginUser = (loginInfo, history) => (dispatch) => {
           const thisUser = users.filter(
             (user) => user.username === loginInfo.username
           );
-          console.log(thisUser[0]); 
+          console.log(thisUser[0]);
+          localStorage.setItem("clientId", thisUser[0].id)
+          localStorage.setItem("clientName", thisUser[0].username)
           dispatch({ type: LOGIN_SUCCESS, payload: thisUser[0] });
         })
         .catch((err) => {
@@ -69,5 +71,24 @@ export const loginUser = (loginInfo, history) => (dispatch) => {
     .catch((err) => {
       console.error(err);
       dispatch({ type: LOGIN_FAILURE });
+    });
+};
+
+export const postListing = (post) => (dispatch) => {
+  dispatch({ type: POST_LISTING_START });
+  let modifiedPost = {
+    ...post,
+    userId: localStorage.getItem("clientId"),
+    name: localStorage.getItem("clientName")
+  }
+  console.log(modifiedPost)
+  axiosWithAuth()
+    .post(`${BASE_URL}/listings`, modifiedPost)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: POST_LISTING_SUCCESS });
+    })
+    .catch((err) => {
+      console.error(err);
     });
 };
