@@ -102,6 +102,18 @@ function SignUp(props) {
 
         e.preventDefault()
 
+        //Please DON'T TOUCH this 'axios' part. THIS IS MY MVP that I need to keep it.
+        axios
+            .post('https://reqres.in/api/users', info)
+            .then( response => {
+
+                //Function from App.js
+                props.addUserList(response.data)
+            })
+            .catch( err => {
+                console.log(err)
+            })
+
         const registerObj = {
             username: info.name,
             password: info.password,
