@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function SignUp({addUserList}) {
+function SignUp(props) {
 
     const classes = useStyles();
     const history = useHistory();
@@ -228,9 +228,11 @@ function SignUp({addUserList}) {
     )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
+    const {addUserList} = ownProps;
     return {
-        isRegistering: state.isRegistering
+        isRegistering: state.isRegistering,
+        addUserList: addUserList
     }
 }
 

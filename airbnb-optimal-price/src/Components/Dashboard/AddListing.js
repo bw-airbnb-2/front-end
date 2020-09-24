@@ -27,15 +27,15 @@ const useStyles = makeStyles({
 const initialListing = {
   userId: 0,
   name: "",
-  room_type: "House",
-  location: "Miami",
+  room_type: "",
+  location: "",
   price: 100,
   accomodates: 1,
   bathrooms: 1,
   bedrooms: 1,
   beds: 1,
   guests_included: 1,
-  minimum_nights: 3,
+  minimum_nights: 0,
   maximum_nights: 4,
 };
 

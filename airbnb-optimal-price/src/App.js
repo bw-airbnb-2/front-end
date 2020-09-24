@@ -53,9 +53,6 @@ function App() {
           <Route path="/sign-up">
             <SignUp addUserList={addUserList}/>
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
           <Route path='/user-list'>
             {
               userList.map( (eachUser) => {

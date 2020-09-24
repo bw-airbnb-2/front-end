@@ -15,6 +15,7 @@ export default function NavBar() {
     localStorage.setItem("token", "");
     localStorage.setItem("clientId", "");
     localStorage.setItem("clientName", "");
+    console.log(localStorage)
     history.push('/log-in');
   };
 
