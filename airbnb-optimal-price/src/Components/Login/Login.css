@@ -1,6 +1,6 @@
 .mainDiv{
     /* Background Card */
-    background-color:white;
+    background-color:rgb(255, 255, 255);
     display:flex;
     flex-direction:column;
     width:40%;
@@ -9,9 +9,14 @@
     /* Align */
     text-align:center;
     justify-content: center;
+    align-items: center;
 }
 .mainerDiv{
     display:flex;
-    justify-content: center;
+    flex-direction:column;
     padding:10%;
+    /* Align */
+    align-items: center;
+    justify-content: center;
+    text-align:center;
 }
