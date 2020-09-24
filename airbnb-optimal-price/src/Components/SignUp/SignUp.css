@@ -11,8 +11,8 @@ body {
    align-items: center;
 }
 
-.signUp > h1 {
-   margin: 1rem 0 2rem 0;
+.signUp form h1 {
+   margin: 0.4rem 0 1.5rem 0;
 }
 
 .signUp form {
@@ -22,6 +22,7 @@ body {
    background-color: white;
    border-radius: 30px;
    padding: 3% 5%;
+   margin-top: 4%;
 }
 
 .signUp form input {
@@ -55,4 +56,10 @@ body {
    width: 100%;
    text-align: center;
    margin: 1rem 0 0.8rem 0;
+}
+
+.signUp > a {
+   margin-top: 1.5%;
+   text-decoration: underline;
+   color: black;
 }

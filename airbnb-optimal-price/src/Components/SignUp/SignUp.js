@@ -3,6 +3,7 @@ import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { useHistory } from 'react-router-dom';
 
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SignUp(props) {
+
+function SignUp({addUserList}) {
 
     const classes = useStyles();
     const history = useHistory();
@@ -141,9 +143,9 @@ function SignUp(props) {
     
     return(
         <div className='signUp'>
-            <h1>Sign Up</h1>
 
             <form className={classes.root} onSubmit={ formSubmit }>
+                <h1>Sign Up</h1>
 
                 {/* Name input */}
                 <label htmlFor='name'>
@@ -221,7 +223,7 @@ function SignUp(props) {
                 <Button variant="contained" disabled={disabled} type='submit'>Get Started</Button>
 
             </form>
-
+            <Link to='/user-list'><h4>User list</h4></Link>
         </div>
     )
 }
