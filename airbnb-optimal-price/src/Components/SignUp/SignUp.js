@@ -3,12 +3,21 @@ import './SignUp.css'
 import * as yup from 'yup'
 import schema from './SignUp-Schema'
 import axios from 'axios'
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 
 // Material UI
 import { Button } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+
+//redux
+import { connect } from 'react-redux';
+
+//actions
+import { registerUser } from '../../actions/actions';
+
 
 
 // Material UI
@@ -21,11 +30,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
 function SignUp(props) {
 
     const classes = useStyles();
+    const history = useHistory();
 
     // Info state
     const [info, setInfo] = useState({
@@ -92,18 +100,19 @@ function SignUp(props) {
 
         e.preventDefault()
 
-        
+        const registerObj = {
+            username: info.name,
+            password: info.password,
+            first_name: "firstPlaceholder",
+            last_name: "lastPlaceholder",
+            address: "1234 Main St, Somewhere, OH, 12345",
+            age: 26,
+            birthday: "10 - 14 - 1994",
+            country: "USA"
+          }
         // Send data of the object we like to send and get the data back from the server
-        axios
-            .post('https://reqres.in/api/users', info)
-            .then( response => {
-                
-                //Function from App.js
-                console.log(response.data)
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        props.registerUser(registerObj);
+        history.push("/log-in");
         
         // Resets 'info' state when submited
 
@@ -217,4 +226,10 @@ function SignUp(props) {
     )
 }
 
-export default SignUp
+function mapStateToProps(state) {
+    return {
+        isRegistering: state.isRegistering
+    }
+}
+
+export default connect( mapStateToProps, { registerUser })(SignUp);
