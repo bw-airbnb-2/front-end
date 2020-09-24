@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 const initialListing = {
   id: 0,
   userId: 0,
-  name: '',
+  name: "",
   room_type: "",
   minimum_nights: 0,
   maximum_nights: 0,
@@ -35,12 +35,22 @@ const initialListing = {
 
 export default function AddListing() {
   const classes = useStyles();
-  const [listing, setListing] = useState({});
+  const [listing, setListing] = useState(initialListing);
 
-  const saveListing = () => {
-    axiosWithAuth()
-    .post("https://airbnb-bw-backend.herokuapp.com/api/listings", listing);
+  const saveListing = (e) => {
+    e.preventDefault();
+    axiosWithAuth().post(
+      "https://airbnb-bw-backend.herokuapp.com/api/listings",
+      listing
+    );
   };
+
+  const handleChange = (e) => {
+    setListing({
+      ...listing,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <Grid
@@ -51,31 +61,39 @@ export default function AddListing() {
       direction="column"
     >
       <Typography variant="h2">Add Listing</Typography>
-      <form>
+      <form onSubmit={saveListing}>
         <Grid item container alignItems="center" direction="column">
           <TextField
             className={classes.textField}
             InputProps={{ className: classes.input }}
-            name="listing-name"
+            name="name"
             label="Name"
             variant="outlined"
             required
+            value={listing.name}
+            onChange={handleChange}
           />
           <TextField
             className={classes.textField}
             InputProps={{ className: classes.input }}
-            name="room-type"
+            name="room_type"
             label="Room Type"
             variant="outlined"
             required
+            value={listing.room_type}
+            onChange={handleChange}
+
           />
           <TextField
             className={classes.textField}
             InputProps={{ className: classes.input }}
-            name="minimum-nights"
+            name="minimum_nights"
             label="Minimum Nights"
             variant="outlined"
             required
+            value={listing.minimum_nights}
+            onChange={handleChange}
+
           />
           <TextField
             className={classes.textField}
@@ -84,9 +102,11 @@ export default function AddListing() {
             label="Location"
             variant="outlined"
             required
+            value={listing.location}
+            onChange={handleChange}
           />
           <Button>Optimal Price</Button>
-          <Button onClick={() => saveListing()}>Save</Button>
+          <Button type="submit">Save</Button>
         </Grid>
       </form>
     </Grid>

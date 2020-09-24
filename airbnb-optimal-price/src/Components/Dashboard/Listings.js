@@ -19,7 +19,7 @@ function Listings(props) {
         const listings = res.data;
         console.log(props.user);
         const userListings = listings.filter((list) => {
-          return list.id == props.user.id;
+          return list.id === props.user.id;
         });
         setListings(userListings);
       })
