@@ -72,6 +72,7 @@ function ListItem(props) {
               // value={listing.location}
               // onChange={handleChange}
             />
+            <Button onClick={ () => setEdit(false) }>Cancel</Button>
             <Button>Optimal Price</Button>
             <Button type="submit">Save</Button>
           </Grid>
