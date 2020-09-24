@@ -14,10 +14,13 @@ function Listings(props) {
     axiosWithAuth()
       .get("https://airbnb-bw-backend.herokuapp.com/api/listings")
       .then((res) => {
+        console.log(res)
         const rawListings = res.data;
+        console.log(rawListings)
         const userListings = rawListings.filter((list) => {
-          return list.id === localStorage.getItem("clientId");
+          return list.userId == localStorage.getItem("clientId");
         });
+        console.log(userListings)
         setListings(userListings);
       })
       .catch((err) => {
