@@ -60,7 +60,7 @@ function ListItem(props) {
           </Button>
         </Grid>
       ) : (
-        <form>
+        <form onSubmit={saveListing}>
           <Grid item container alignItems="center" direction="column">
             <TextField
               className={classes.textField}
