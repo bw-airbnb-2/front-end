@@ -3,7 +3,7 @@
 .userList {
    display: flex;
    flex-flow: column wrap;
-   width: 15%;
+   width: 20%;
    margin: 2%;
    padding: 2% 0;
    align-items: center;
