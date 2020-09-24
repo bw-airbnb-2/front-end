@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+import axios from 'axios';
+
 import ListItem from './ListItem';
 
 const initialMockData = [
@@ -16,15 +19,25 @@ const initialMockData = [
     }
 ]
 
-
 export default function Listings() {
-    const [ listings, setListings ] = useState(initialMockData)
+    const [ listings, setListings ] = useState([])
+
+    useEffect( () => {
+        axiosWithAuth()
+        .get('https://airbnb-bw-backend.herokuapp.com/api/listings')
+        .then( res => {
+            console.log(res)
+            console.log(res.data)
+            setListings(res.data)
+        })
+        .catch( err => { console.error(err)})
+    }, [])
 
     return(
         <div>
         {
             listings.map( list => {
-                return <ListItem />;
+                return <ListItem key={list.id} />;
             })
         }
         </div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Button, Grid, TextField, Input } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { axiosWithAuth } from '../../utils/axiosWithAuth';
-
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const useStyles = makeStyles({
   formBox: {
@@ -18,13 +17,31 @@ const useStyles = makeStyles({
   },
 });
 
+const initialListing = {
+  id: new Date(),
+  userId: 1,
+  name: "Chris",
+  room_type: "large",
+  minimum_nights: 3,
+  maximum_nights: 6,
+  location: "Japan",
+  price: 255.99,
+  accomodates: 3,
+  bathrooms: 2,
+  bedrooms: 2,
+  beds: 3,
+  guests_included: 2,
+};
+
 export default function AddListing() {
   const classes = useStyles();
+  const [listing, setListing] = useState({});
 
   const saveListing = () => {
-    // axiosWithAuth()
-    // .post()
-  }
+    axiosWithAuth(
+      "https://airbnb-bw-backend.herokuapp.com/api/listings"
+    ).post();
+  };
 
   return (
     <Grid
@@ -70,7 +87,7 @@ export default function AddListing() {
             required
           />
           <Button>Optimal Price</Button>
-          <Button onClick={ () => saveListing()}>Save</Button>
+          <Button onClick={() => saveListing()}>Save</Button>
         </Grid>
       </form>
     </Grid>

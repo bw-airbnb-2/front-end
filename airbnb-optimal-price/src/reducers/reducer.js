@@ -20,7 +20,7 @@ import {
 } from "../actions/actions";
 
 export const initialState = {
-  listings: [],
+  user: {},
   error: "",
   isLoggedIn: false,
   isRegistering: false,
