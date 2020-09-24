@@ -5,7 +5,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
 
 //components
@@ -16,6 +17,10 @@ import User from './Components/SignUp/User'
 import { PrivateRoute } from './Components/PrivateRoute';
 import NavBar from './Components/NavBar';
 
+//redux
+import { connect } from 'react-redux';
+
+//actions
 //material UI
 import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
@@ -51,9 +56,6 @@ function App() {
           <Route path="/sign-up">
             <SignUp addUserList={addUserList}/>
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
           <Route path='/user-list'>
             {
               userList.map( (eachUser) => {
@@ -64,6 +66,9 @@ function App() {
             }
           </Route>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <Route path="/">
+            <Redirect to="/dashboard" />
+          </Route>
         </Switch>
       </div>
     </Router>

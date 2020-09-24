@@ -10,11 +10,12 @@ import {
 
 export default function NavBar() {
   let history = useHistory();
-  console.log(history);
 
   const logOut = () => {
     localStorage.setItem("token", "");
-    console.log(history);
+    localStorage.setItem("clientId", "");
+    localStorage.setItem("clientName", "");
+    console.log(localStorage)
     history.push('/log-in');
   };
 

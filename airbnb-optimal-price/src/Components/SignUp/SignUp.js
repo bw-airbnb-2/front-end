@@ -13,6 +13,13 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 
+//redux
+import { connect } from 'react-redux';
+
+//actions
+import { registerUser } from '../../actions/actions';
+
+
 
 // Material UI
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function SignUp({addUserList}) {
+function SignUp(props) {
 
     const classes = useStyles();
     const history = useHistory();
@@ -106,25 +113,8 @@ function SignUp({addUserList}) {
             country: "USA"
           }
         // Send data of the object we like to send and get the data back from the server
-        axiosWithAuth()
-            .post('https://airbnb-bw-backend.herokuapp.com/api/auth/register', registerObj)
-            .then( response => {
-                
-                history.push('/log-in')
-            })
-            .catch( err => {
-                console.log(err)
-            })
-
-         axios
-            .post('https://reqres.in/api/users', info)
-            .then( response => {
-                
-                addUserList(response.data)
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        props.registerUser(registerObj);
+        history.push("/log-in");
         
         // Resets 'info' state when submited
 
@@ -238,4 +228,12 @@ function SignUp({addUserList}) {
     )
 }
 
-export default SignUp
+function mapStateToProps(state, ownProps) {
+    const {addUserList} = ownProps;
+    return {
+        isRegistering: state.isRegistering,
+        addUserList: addUserList
+    }
+}
+
+export default connect( mapStateToProps, { registerUser })(SignUp);
