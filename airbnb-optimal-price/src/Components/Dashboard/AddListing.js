@@ -38,9 +38,8 @@ export default function AddListing() {
   const [listing, setListing] = useState({});
 
   const saveListing = () => {
-    axiosWithAuth(
-      "https://airbnb-bw-backend.herokuapp.com/api/listings"
-    ).post();
+    axiosWithAuth()
+    .post("https://airbnb-bw-backend.herokuapp.com/api/listings", listing);
   };
 
   return (

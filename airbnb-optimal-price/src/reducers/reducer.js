@@ -57,7 +57,8 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoggedIn: true,
-        isLoggingIn: false
+        isLoggingIn: false,
+        user: action.payload
       };
     case LOGIN_FAILURE:
       return {

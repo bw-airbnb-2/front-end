@@ -50,7 +50,21 @@ export const loginUser = (loginInfo, history) => (dispatch) => {
       console.log(res.data);
       localStorage.setItem("token", res.data.token);
       history.push("/dashboard");
-      dispatch({ type: LOGIN_SUCCESS });
+
+      axiosWithAuth()
+        .get(`${BASE_URL}/users`)
+        .then((res) => {
+          console.log(res.data);
+          const users = res.data;
+          const thisUser = users.filter(
+            (user) => user.username === loginInfo.username
+          );
+          console.log(thisUser[0]); 
+          dispatch({ type: LOGIN_SUCCESS, payload: thisUser[0] });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     })
     .catch((err) => {
       console.error(err);
