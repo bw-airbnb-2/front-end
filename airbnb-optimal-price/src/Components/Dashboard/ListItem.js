@@ -38,6 +38,7 @@ function ListItem(props) {
   const saveListing = (e) => {
     e.preventDefault();
     props.editListing( props.item.id, form );
+    setEdit(false);
   };
 
   const handleChange = (e) => {

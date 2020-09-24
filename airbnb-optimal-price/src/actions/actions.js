@@ -100,6 +100,22 @@ export const deleteListing = (id) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({ type: DELETE_LISTING_SUCCESS });
+      axiosWithAuth()
+        .get(`${BASE_URL}/listings`)
+        .then((res) => {
+          console.log(res.data);
+          const rawListings = res.data;
+          console.log(rawListings);
+          const userListings = rawListings.filter((list) => {
+            return list.userId == localStorage.getItem("clientId");
+          });
+          console.log(userListings);
+          dispatch({ type: GET_LISTINGS_SUCCESS, payload: userListings });
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch({ type: GET_LISTINGS_FAILURE });
+        });
     })
     .catch((err) => {
       console.error(err);
@@ -114,6 +130,22 @@ export const editListing = (id, post) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({ type: PUT_LISTING_SUCCESS });
+      axiosWithAuth()
+        .get(`${BASE_URL}/listings`)
+        .then((res) => {
+          console.log(res.data);
+          const rawListings = res.data;
+          console.log(rawListings);
+          const userListings = rawListings.filter((list) => {
+            return list.userId == localStorage.getItem("clientId");
+          });
+          console.log(userListings);
+          dispatch({ type: GET_LISTINGS_SUCCESS, payload: userListings });
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch({ type: GET_LISTINGS_FAILURE });
+        });
     })
     .catch((err) => {
       console.error(err);
@@ -128,11 +160,11 @@ export const getListings = () => (dispatch) => {
     .then((res) => {
       console.log(res.data);
       const rawListings = res.data;
-        console.log(rawListings)
-        const userListings = rawListings.filter((list) => {
-          return list.userId == localStorage.getItem("clientId");
-        });
-        console.log(userListings)
+      console.log(rawListings);
+      const userListings = rawListings.filter((list) => {
+        return list.userId == localStorage.getItem("clientId");
+      });
+      console.log(userListings);
       dispatch({ type: GET_LISTINGS_SUCCESS, payload: userListings });
     })
     .catch((err) => {
