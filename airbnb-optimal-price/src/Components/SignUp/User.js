@@ -5,10 +5,10 @@ function User({user}) {
 
    return (
       <div className='userList'>
-         <p>{user.name}</p>
-         <p>{user.email}</p>
-         <p>{user.phone}</p>
-         <p>{user.password}</p>
+         <p>name: {user.name}</p>
+         <p>email: {user.email}</p>
+         <p>phone#: {user.phone}</p>
+         <p>pw: {user.password}</p>
       </div>
    )
 }

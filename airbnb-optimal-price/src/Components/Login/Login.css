@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
 }
-.mainerDiv{
+.mainerDiv {
     display:flex;
     flex-direction:column;
     padding:10%;

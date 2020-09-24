@@ -28,6 +28,7 @@ function App() {
 
   const [userList, setUserList] = useState([
     {
+      id: '',
       name: 'James',
       email: 'sunkist@gmail.com',
       phone: '9097894567',
@@ -41,6 +42,8 @@ function App() {
       setUserList([...userList, userInfo])
 
   }
+
+  console.log(Date.now())
 
   return (
     <Router>
@@ -61,7 +64,7 @@ function App() {
 
               })
             }
-        </Route>
+          </Route>
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route path="/">
             <Redirect to="/dashboard" />
