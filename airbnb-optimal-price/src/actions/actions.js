@@ -92,3 +92,17 @@ export const postListing = (post) => (dispatch) => {
       console.error(err);
     });
 };
+
+export const deleteListing = (id) => (dispatch) => {
+  dispatch({ type: DELETE_LISTING_START });
+  axiosWithAuth()
+  .delete(`${BASE_URL}/listings/${id}`)
+  .then( res => {
+    console.log(res);
+    dispatch({ type: DELETE_LISTING_SUCCESS })
+  })
+  .catch( err => {
+    console.error(err)
+    dispatch({ type: DELETE_LISTING_FAILURE })
+  })
+}
