@@ -21,6 +21,7 @@ import {
 
 export const initialState = {
   user: {},
+  listings: [],
   error: "",
   isLoggedIn: false,
   isRegistering: false,

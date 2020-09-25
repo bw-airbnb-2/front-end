@@ -36,7 +36,7 @@ const initialListing = {
   beds: 1,
   guests_included: 1,
   minimum_nights: 0,
-  maximum_nights: 4,
+  maximum_nights: 7,
 };
 
 function AddListing(props) {
